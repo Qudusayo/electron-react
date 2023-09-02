@@ -7,7 +7,7 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Home Page</p>
+        <p className="text-red-500">Home Page</p>
         <Link to="/about">About</Link>
       </header>
     </div>

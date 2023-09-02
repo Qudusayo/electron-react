@@ -1,3 +1,4 @@
+const isDev = require("electron-is-dev");
 const electron = require("electron");
 const path = require("path");
 
@@ -15,7 +16,12 @@ function createWindow() {
   });
   // and load the index.html of the app.
   console.log(__dirname);
-  mainWindow.loadFile(path.join(__dirname, "../build/index.html"));
+  mainWindow.loadURL(
+    isDev
+      ? "http://localhost:3000"
+      : `file://${path.join(__dirname, "../build/index.html")}`
+  );
+  mainWindow.on("closed", () => (mainWindow = null));
 }
 
 // This method will be called when Electron has finished

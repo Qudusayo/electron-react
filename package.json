@@ -2,7 +2,10 @@
   "name": "my_electron_react_application",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -12,15 +15,20 @@
     "@types/react-dom": "^18.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "typescript": "^4.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export BROWSER=none && react-scripts start",
+    "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "craco-build": "craco build",
+    "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron.js --publish never",
+    "publish": "electron-builder build --mac --win --publish always"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +47,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
+    "electron": "^26.1.0",
+    "electron-builder": "^24.6.3",
+    "webpack-node-externals": "^3.0.0"
   }
 }
